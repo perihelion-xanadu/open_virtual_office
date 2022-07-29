@@ -1,0 +1,56 @@
+body {margin: 0; padding: 0; overflow: hidden; font-family: "Consolas", monospace;}
+#leftbar {position: absolute; top: 0; left: 0; bottom: 0; display: flex; z-index: 2; border: 3px solid gray; background-color: rgba(30,30,30,0.9); transition: left 1s ease-in-out; overflow: hidden; width: 300px; flex-direction: column; justify-content: flex-start; align-content: center; }
+#leftbar.open { left: 0; }
+#leftbar.closed { left: -300px; }
+#leftbar_toggle { position: absolute; top: 0; left: 0; z-index: 4; }
+#mainview {position: absolute; top: 0; right: 0; bottom: 0; left: 0; display: inline-block; z-index: 1; border: 3px solid green; background-color: black; color: white; }
+#sysmon { position: absolute; top: 0; right: 0; width: auto; height: 20px; border: 2px solid black; background-color: black; color: white; font-weight: bold; text-align: right; display: inline-block; z-index: 4;}
+#leftbar_quick { position: relative; border: 1px solid black; overflow: auto; min-height: 150px; }
+#leftbar_allusers { position: relative; border: 1px solid black; overflow: auto; min-height: 40%; max-height: 80%;}
+#leftbar h3 { text-align: center; color: white; }
+#leftbar_settings { position: relative; color: white; border: 1px solid black; overflow: hidden;  text-align: left; min-height: 150px;}
+#layout_container {position: absolute; height: 100vh; width: 100vw; display: flex; flex-wrap: wrap; flex-direction: row; align-content: stretch; align-items: stretch; justify-content: stretch; text-align: center; overflow: auto;}
+.group {position: relative; border: 4px outset gray; display: flex; flex-wrap: wrap; padding: 0; border-radius: 15px; margin: 5px; flex-direction: row; align-items: stretch; align-content: stretch; text-align: center; justify-content: stretch; box-shadow: -2px -2px 5px rgba(255,255,255,0.7); column-count: 2; column-width: 50%; }
+.groupname {width: 100%; margin: 0; margin-top: 5px; text-align: center; padding: 0; column-span: all;}
+.office {position: relative; display: inline-block; border: 2px inset gray; flex-grow: 1; text-align: center; align-items: center; align-content: center; margin: 0; padding: 5px; }
+.office_inner {display: flex; position: relative; flex-flow: row wrap; align-items: center; justify-content: center; align-content: center; width: 100%;}
+.officename {position: relative; padding: 0; margin: 0; font-size: 0.8em; text-align: center;  max-width: 100px; margin-left: auto; margin-right: auto; font-family: "Arial", sans-serif; }
+.officename span {color: gold; font-weight: bold; }
+.meetingroom {position: relative; align-self: flex-end; width: 100%; order: 10; column-span: all;}
+.meetingroom .person { }
+.person {margin: 5px; padding: 0; font-size: 250%; text-align: left; background-color: lightgray; display: inline-block; border-radius: 20px; line-height: 0.5; text-indent: -6px; letter-spacing: -6px; z-index: 2; align-self: center; transition: font-size 0.75s;}
+.person.current {color: powderblue; background-color: indigo !IMPORTANT; }
+.person:hover {cursor: pointer; background-color: lightgreen !IMPORTANT;}
+.person:after {content: attr(data-text); position: absolute; transform: translateY(-150%); left: 50%; margin-left: 15px; width: 200px; padding: 10px; border-radius: 10px; background: #000; color: #fff; text-align: center; display: none; font-size: 20px; z-index: 10; word-wrap: breakall; line-height: 1.5; text-indent: normal; letter-spacing: normal; }
+.person:hover:after {display: block; }
+.person.status_available {background-color: green; }
+.person.status_afk {background-color: gray; }
+.person.status_dnd {background-color: darkred; }
+#action_menu_box {position: absolute; border: 2px solid darkgray; background-color: darkgray; z-index: 10; text-align: center;}
+.menu_box_title {display: inline-block; text-align: center; font-weight: bolder; border: 1px solid black; padding: 4px; margin: 1px; margin-left: auto; margin-right: auto;}
+.action_menu_close {position: absolute; top: 0; right: 0; color: red; border: 0 solid red; font-size: 1.2em;}
+.action_menu_close:hover {font-weight: bold; border: 1px solid red; cursor: pointer;}
+#click_mask {position: absolute; z-index: 9; background-color: rgba(255,255,255,0.3);}
+#click_mask.enabled {top: 0; left: 0; bottom: 0; right: 0;}
+#click_mask.disabled {display: none; }
+#menu_action_list {list-style-type: none; text-align: left; margin-left: -20px; margin-right: 10px;}
+#menu_action_list li {display: block; color: white; font-weight: bold; border: 2px solid rgba(0,0,0,0);}
+#menu_action_list li:hover {border: 2px solid white; color: green; cursor: pointer; }
+#alert_window {position: absolute; z-index: 10; margin: 25%; border: 3px outset gray; background-color: gray; min-width: 400px; min-height: 200px; border-radius: 10px;}
+#homeoffice {}
+#homeoffice:hover {color: green; cursor: pointer; }
+.quickaccess_name {color: gold; margin-right: 20px; font-weight: bold; }
+.quickaccess_name:hover {cursor: pointer; color: green; }
+.allusers_groupname {color: orange; font-weight: bold; }
+.allusers_user {color: white; border: 1px solid rgba(0,0,0,0)}
+.allusers_user:hover {color: green; border-color: green; cursor: pointer;}
+.qa_status_available {color: lightgreen;}
+.qa_status_afk {color: lightgray;}
+.qa_status_dnd {color: lightred;}
+.qa_status_offline {color: orange; font-style: italic;}
+.alert_window_close {position: absolute; top: 0; right: 0; margin: 2px; padding: 2px; color: red; border: 1px solid rgba(0,0,0,0);}
+.alert_window_close:hover {color: green; border-color: green; cursor: pointer; }
+.settings_logoutbutton { }
+.adminbutton {display: none; }
+.adminbuttonOn {display: inline; }
+#list_allusers ol {list-style-type: none; }
